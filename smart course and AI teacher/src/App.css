@@ -42,6 +42,13 @@
 .hdl {
   position: fixed;
   top: 10px;
-  right: 10px;
   z-index: 2;
+}
+
+.hdl:first-child {
+  right: 150px;
+}
+
+.hdl:last-child {
+  right: 10px;
 }

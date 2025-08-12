@@ -1,0 +1,148 @@
+.instructional-design-container {
+  padding: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    
+    h1 {
+      margin-left: 20px;
+      margin-bottom: 0;
+      color: #1890ff;
+      font-weight: 600;
+    }
+  }
+
+  .content {
+    display: flex;
+    gap: 20px;
+    
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+
+    .input-section, .result-section {
+      flex: 1;
+      padding: 25px;
+      border-radius: 12px;
+      background-color: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+      h2 {
+        margin-bottom: 20px;
+        color: #333;
+        font-weight: 600;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 10px;
+      }
+    }
+
+    .input-section {
+      display: flex;
+      flex-direction: column;
+      
+      .ant-input {
+        margin-bottom: 20px;
+        border-radius: 8px;
+        border: 1px solid #e8e8e8;
+        
+        &:hover, &:focus {
+          border-color: #1890ff;
+          box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.1);
+        }
+      }
+
+      .file-name-input {
+        margin-bottom: 24px;
+        
+        .ant-input-group-addon {
+          background-color: #f5f5f5;
+          color: #666;
+          border-top-right-radius: 8px;
+          border-bottom-right-radius: 8px;
+        }
+      }
+
+      button {
+        align-self: flex-start;
+        height: 40px;
+        padding: 0 24px;
+        font-size: 16px;
+        border-radius: 20px;
+        box-shadow: 0 2px 8px rgba(24, 144, 255, 0.2);
+      }
+    }
+
+    .result-section {
+      .loading-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 200px;
+        
+        p {
+          margin-top: 16px;
+        }
+      }
+
+      .result-content {
+        .success-result {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 250px;
+          text-align: center;
+          
+          .success-icon {
+            font-size: 60px;
+            color: #52c41a;
+            margin-bottom: 16px;
+            height: 80px;
+            width: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            background-color: rgba(82, 196, 26, 0.1);
+          }
+          
+          p {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 24px;
+          }
+          
+          button {
+            padding: 0 30px;
+            height: 48px;
+            font-size: 16px;
+            border-radius: 24px;
+            box-shadow: 0 4px 12px rgba(24, 144, 255, 0.2);
+            
+            .download-icon {
+              font-style: normal;
+              margin-right: 8px;
+              font-weight: bold;
+            }
+          }
+        }
+
+        .empty-result {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 250px;
+          background-color: #fafafa;
+          border: 1px dashed #d9d9d9;
+          border-radius: 8px;
+          color: #999;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}

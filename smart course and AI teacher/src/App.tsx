@@ -16,6 +16,7 @@ import {
   Switch,
   message,
 } from 'antd'
+import InstructionalDesign from './pages/InstructionalDesign'
 import { useForm } from 'antd/es/form/Form.js'
 // import { PlayerEvents, SDKEvents } from './lib/enums/events'
 // import AvatarPlatform from './lib/core'
@@ -50,6 +51,7 @@ function App() {
   const [textDriverForm] = useForm()
   const [audioDriverForm] = useForm()
   const [actionDriverForm] = useForm()
+  const [currentPage, setCurrentPage] = useState('main')
 
   const [subtitle, setSubtitle] = useState('')
   const interativeRef = useRef<any>()
@@ -367,6 +369,11 @@ function App() {
     }
   }, [])
 
+  // 根据当前页面状态渲染不同的内容
+  if (currentPage === 'instructionalDesign') {
+    return <InstructionalDesign onBack={() => setCurrentPage('main')} />;
+  }
+
   return (
     <Spin spinning={loading} tip="Loading...">
       <div className={'wrapper'}>
@@ -374,9 +381,14 @@ function App() {
         <div className="wp wrapper2"></div>
         <p className="subtitle">{subtitle}</p>
       </div>
-      <Button className="hdl" onClick={() => setDrawerOpen(true)}>
-        打开调试面板
-      </Button>
+      <div style={{ position: 'fixed', top: '10px', right: '10px', zIndex: 2, display: 'flex', gap: '10px' }}>
+        <Button onClick={() => setCurrentPage('instructionalDesign')}>
+          教学设计生成器
+        </Button>
+        <Button onClick={() => setDrawerOpen(true)}>
+          打开调试面板
+        </Button>
+      </div>
       <Drawer
         title="API"
         onClose={() => setDrawerOpen(false)}
