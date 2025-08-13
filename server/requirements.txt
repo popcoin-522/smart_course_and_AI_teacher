@@ -1,0 +1,5 @@
+Flask==2.3.2
+Jinja2==3.1.2
+Flask-CORS==4.0.0
+requests==2.31.0
+python-pptx==0.6.21 

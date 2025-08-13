@@ -1,0 +1,23 @@
+# {{ title }}
+
+**作者:** {{ author }}  
+**日期:** {{ date }}
+
+## 目录
+
+{% for section in content.sections %}
+- {{ section.title }}
+{% endfor %}
+
+{% for section in content.sections %}
+## {{ section.title }}
+
+{{ section.description }}
+
+{% endfor %}
+
+## 总结
+
+感谢您的关注！
+
+**联系方式:** {{ author }} 
