@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>思维导图生成服务</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1890ff;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .api-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #e8e8e8;
+            border-radius: 6px;
+            background-color: #fafafa;
+        }
+        .api-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .api-url {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+        .method {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .method.post {
+            background-color: #52c41a;
+            color: white;
+        }
+        .method.get {
+            background-color: #1890ff;
+            color: white;
+        }
+        .description {
+            color: #666;
+            line-height: 1.6;
+        }
+        .example {
+            background-color: #f6f8fa;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .status {
+            text-align: center;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+        .status.success {
+            background-color: #f6ffed;
+            border: 1px solid #b7eb8f;
+            color: #52c41a;
+        }
+        .status.error {
+            background-color: #fff2f0;
+            border: 1px solid #ffccc7;
+            color: #ff4d4f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 思维导图生成服务</h1>
+        
+        <div class="status success">
+            <strong>✅ 服务运行正常</strong><br>
+            思维导图生成服务已启动，可以正常使用
+        </div>
+
+        <div class="api-section">
+            <div class="api-title">📊 生成思维导图</div>
+            <div class="method post">POST</div>
+            <div class="api-url">/api/mindmap/generate</div>
+            <div class="description">
+                根据提供的标题、描述和内容生成思维导图，支持多种主题和布局方式。
+            </div>
+            <div class="example">
+{
+  "title": "人工智能发展历程",
+  "description": "从概念到应用的完整发展脉络",
+  "content": "AI概念\n  机器学习\n    深度学习\n    强化学习\n  自然语言处理\n    机器翻译\n    对话系统",
+  "theme": "technology",
+  "layout": "radial"
+}
+            </div>
+        </div>
+
+        <div class="api-section">
+            <div class="api-title">💾 下载思维导图</div>
+            <div class="method post">POST</div>
+            <div class="api-url">/api/mindmap/download</div>
+            <div class="description">
+                下载生成的思维导图为PNG图片格式。
+            </div>
+        </div>
+
+        <div class="api-section">
+            <div class="api-title">👁️ 预览思维导图</div>
+            <div class="method post">POST</div>
+            <div class="api-url">/api/mindmap/preview</div>
+            <div class="description">
+                预览思维导图，返回base64编码的图片数据。
+            </div>
+        </div>
+
+        <div class="api-section">
+            <div class="api-title">🎨 获取主题列表</div>
+            <div class="method get">GET</div>
+            <div class="api-url">/api/mindmap/themes</div>
+            <div class="description">
+                获取可用的思维导图主题列表，包括默认、商务、创意、教育、科技等主题。
+            </div>
+        </div>
+
+        <div class="api-section">
+            <div class="api-title">📐 获取布局列表</div>
+            <div class="method get">GET</div>
+            <div class="api-url">/api/mindmap/layouts</div>
+            <div class="description">
+                获取可用的布局方式，包括放射状、树状、水平、垂直等布局。
+            </div>
+        </div>
+
+        <div class="api-section">
+            <div class="api-title">🔍 健康检查</div>
+            <div class="method get">GET</div>
+            <div class="api-url">/api/mindmap/health</div>
+            <div class="description">
+                检查服务运行状态和版本信息。
+            </div>
+        </div>
+
+        <div class="api-section">
+            <div class="api-title">📝 使用说明</div>
+            <div class="description">
+                <strong>内容格式要求：</strong><br>
+                • 每行一个概念或要点<br>
+                • 使用缩进表示层次关系（2个空格或1个Tab）<br>
+                • 支持列表标记（- * •）<br><br>
+                
+                <strong>支持的主题：</strong><br>
+                • default: 默认主题（蓝白配色）<br>
+                • business: 商务主题（绿色配色）<br>
+                • creative: 创意主题（紫色配色）<br>
+                • education: 教育主题（橙色配色）<br>
+                • technology: 科技主题（青色配色）<br><br>
+                
+                <strong>支持的布局：</strong><br>
+                • radial: 放射状布局（从中心向外发散）<br>
+                • tree: 树状布局（自上而下的层次结构）<br>
+                • horizontal: 水平布局（从左到右的排列）<br>
+                • vertical: 垂直布局（从上到下的排列）
+            </div>
+        </div>
+    </div>
+</body>
+</html>

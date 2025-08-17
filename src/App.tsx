@@ -26,6 +26,7 @@ import AvatarPlatform, {
   SDKEvents,
 } from './testSdk/3.1.2.1002/avatar-sdk-web_3.1.2.1002/index.js'
 import PPTGenerator from './components/PPTGenerator'
+import MindMapGenerator from '../pages/create_mindmap/MindMapGenerator'
 
 const InitAppInfo = {
   serverUrl: 'wss://avatar.cn-huadong-1.xf-yun.com/v1/interact',
@@ -1014,6 +1015,13 @@ function App() {
                     message.success('PPT生成完成！');
                   }}
                 />
+              )
+            },
+            {
+              key: 'mindmap',
+              label: '思维导图',
+              children: (
+                <MindMapGenerator />
               )
             }
           ]}
