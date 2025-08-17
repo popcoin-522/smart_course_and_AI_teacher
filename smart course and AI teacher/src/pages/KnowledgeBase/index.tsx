@@ -54,7 +54,7 @@ const KnowledgeBase: React.FC<KnowledgeBaseProps> = ({ onBack }) => {
     setLoading(true);
     try {
       // 获取环境变量中的API Key，生产环境中应该通过后端服务获取
-      const apiKey ='sk-f1d456baad314d28866a4cb094d4317d';//填写阿里云百炼SDK
+      const apiKey ='';//填写阿里云百炼SDK
       const appId = '8f699dbc0fe54297b4c435c8e92c99ae'; // 替换为实际的应用ID
 
       if (!apiKey || !appId) {

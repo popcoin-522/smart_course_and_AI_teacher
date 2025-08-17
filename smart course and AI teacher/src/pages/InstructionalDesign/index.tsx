@@ -25,8 +25,8 @@ const InstructionalDesign: React.FC<InstructionalDesignProps> = ({ onBack }) => 
     setLoading(true);
     try {
       // 获取环境变量中的API Key，生产环境中应该通过后端服务获取
-      const apiKey = process.env.DASHSCOPE_API_KEY || 'sk-f1d456baad314d28866a4cb094d4317d';//填写阿里云百炼SDK
-      const appId = process.env.APP_ID || '6f812013c8424716ac9d9b2d471fc4d6'; // 替换为实际的应用ID
+      const apiKey ='';//填写阿里云百炼SDK
+      const appId ='6f812013c8424716ac9d9b2d471fc4d6'; // 替换为实际的应用ID
 
       if (!apiKey || !appId) {
         message.error('API配置缺失，请检查环境变量');
