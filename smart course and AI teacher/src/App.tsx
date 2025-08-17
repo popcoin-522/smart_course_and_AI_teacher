@@ -17,6 +17,7 @@ import {
   message,
 } from 'antd'
 import InstructionalDesign from './pages/InstructionalDesign'
+import KnowledgeBase from './pages/KnowledgeBase'
 import { useForm } from 'antd/es/form/Form.js'
 // import { PlayerEvents, SDKEvents } from './lib/enums/events'
 // import AvatarPlatform from './lib/core'
@@ -373,6 +374,10 @@ function App() {
   if (currentPage === 'instructionalDesign') {
     return <InstructionalDesign onBack={() => setCurrentPage('main')} />;
   }
+  
+  if (currentPage === 'knowledgeBase') {
+    return <KnowledgeBase onBack={() => setCurrentPage('main')} />;
+  }
 
   return (
     <Spin spinning={loading} tip="Loading...">
@@ -384,6 +389,9 @@ function App() {
       <div style={{ position: 'fixed', top: '10px', right: '10px', zIndex: 2, display: 'flex', gap: '10px' }}>
         <Button onClick={() => setCurrentPage('instructionalDesign')}>
           教学设计生成器
+        </Button>
+        <Button onClick={() => setCurrentPage('knowledgeBase')}>
+          知识库题目
         </Button>
         <Button onClick={() => setDrawerOpen(true)}>
           打开调试面板
