@@ -43,7 +43,7 @@ const KnowledgeBase: React.FC<KnowledgeBaseProps> = ({ onBack }) => {
       setRenderedHtml(md.render(result));
     }
   }, [result]);
-  const [fileName, setFileName] = useState('knowledge_base_answer.md');
+  const [fileName, setFileName] = useState('exercise.md');
 
   const generateAnswer = async () => {
     if (!question.trim()) {
@@ -53,12 +53,40 @@ const KnowledgeBase: React.FC<KnowledgeBaseProps> = ({ onBack }) => {
 
     setLoading(true);
     try {
-      // 获取环境变量中的API Key，生产环境中应该通过后端服务获取
-      const apiKey ='';//填写阿里云百炼SDK
-      const appId = '8f699dbc0fe54297b4c435c8e92c99ae'; // 替换为实际的应用ID
+      // 获取环境变量中的API Key
+      const apiKey = process.env.DASHSCOPE_API_KEY || '';
+      const appId = process.env.APP_ID || '8f699dbc0fe54297b4c435c8e92c99ae';
 
       if (!apiKey || !appId) {
-        message.error('API配置缺失，请检查环境变量');
+        message.warning('使用示例数据，如需真实API调用请配置环境变量');
+        
+        // 示例数据
+        const sampleAnswer = `
+# React Hooks: useState
+
+**useState** 是一个 React Hook，它允许你向函数组件添加 state 变量。
+
+### 如何使用
+
+\`\`\`javascript
+import React, { useState } from 'react';
+
+function Example() {
+  // 声明一个叫 "count" 的 state 变量
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+\`\`\`
+        `;
+        setResult(sampleAnswer);
         setLoading(false);
         return;
       }
@@ -126,7 +154,7 @@ const KnowledgeBase: React.FC<KnowledgeBaseProps> = ({ onBack }) => {
   return (
     <div className="knowledge-base-container">
       <div className="header">
-        <Button onClick={onBack}>返回</Button>
+        <Button onClick={onBack} className="back-button">返回</Button>
         <h1>个性化知识库</h1>
       </div>
 
@@ -152,6 +180,7 @@ const KnowledgeBase: React.FC<KnowledgeBaseProps> = ({ onBack }) => {
             type="primary" 
             onClick={generateAnswer} 
             loading={loading}
+            className="generate-button"
           >
             确定
           </Button>
@@ -173,7 +202,7 @@ const KnowledgeBase: React.FC<KnowledgeBaseProps> = ({ onBack }) => {
                   <div className="answer-content">
                     <div className="markdown-preview" dangerouslySetInnerHTML={{ __html: renderedHtml }} />
                   </div>
-                  <Button type="primary" size="large" onClick={downloadMdFile} icon={<DownloadOutlined />}>
+                  <Button type="primary" size="large" onClick={downloadMdFile} icon={<DownloadOutlined />} className="download-button">
                     下载MD文件
                   </Button>
                 </div>

@@ -1,6 +1,6 @@
 @import '../../styles/common.scss';
 
-.instructional-design-container {
+.learning-path-container {
   @include page-container;
 
   .header {
@@ -34,16 +34,14 @@
       display: flex;
       flex-direction: column;
       
-      .ant-input-affix-wrapper, .ant-input {
-        margin-bottom: $spacing-lg;
-      }
-
       textarea.ant-input {
         @include input-style;
         min-height: 150px;
+        margin-bottom: $spacing-lg;
       }
 
       .file-name-input {
+        margin-bottom: $spacing-lg;
         .ant-input-wrapper {
           .ant-input {
             @include input-style;
@@ -63,12 +61,12 @@
     }
 
     .result-section {
-      .loading-container, .empty-result, .success-result {
+      .loading-container, .empty-result {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        min-height: 300px;
+        min-height: 400px;
         text-align: center;
       }
 
@@ -80,26 +78,27 @@
         font-size: 16px;
       }
 
-      .success-result {
-        .success-icon {
-          font-size: 60px;
-          color: $success-color;
-          margin-bottom: $spacing-md;
-          height: 80px;
-          width: 80px;
-          line-height: 80px;
-          border-radius: 50%;
-          background-color: rgba($success-color, 0.1);
+      .path-result {
+        position: relative;
+        min-height: 400px;
+
+        .ant-steps {
+          .ant-steps-item-title {
+            font-weight: 600;
+            color: $text-color-primary;
+          }
+          .ant-steps-item-description {
+            color: $text-color-secondary;
+          }
         }
         
-        p {
-          font-size: 18px;
-          color: $text-color-primary;
-          margin-bottom: $spacing-lg;
-        }
-        
-        .download-button {
-          @include primary-button;
+        .download-button-container {
+          text-align: center;
+          margin-top: $spacing-xl;
+          
+          .download-button {
+            @include primary-button;
+          }
         }
       }
     }

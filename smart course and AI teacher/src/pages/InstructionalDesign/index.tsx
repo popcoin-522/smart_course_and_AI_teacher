@@ -24,12 +24,31 @@ const InstructionalDesign: React.FC<InstructionalDesignProps> = ({ onBack }) => 
 
     setLoading(true);
     try {
-      // 获取环境变量中的API Key，生产环境中应该通过后端服务获取
-      const apiKey ='';//填写阿里云百炼SDK
-      const appId ='6f812013c8424716ac9d9b2d471fc4d6'; // 替换为实际的应用ID
+      // 获取环境变量中的API Key
+      const apiKey = process.env.DASHSCOPE_API_KEY || '';
+      const appId = process.env.APP_ID || '6f812013c8424716ac9d9b2d471fc4d6';
 
       if (!apiKey || !appId) {
-        message.error('API配置缺失，请检查环境变量');
+        message.warning('使用示例数据，如需真实API调用请配置环境变量');
+        
+        // 示例数据
+        const sampleDesign = `# 示例教学设计
+
+## 一、课程主题
+- React 基础入门
+
+## 二、教学目标
+- 了解 React 的基本概念
+- 掌握 JSX 语法
+- 学习组件化开发思想
+
+## 三、教学内容
+1.  React 简介
+2.  环境搭建
+3.  JSX 详解
+4.  组件与 Props
+5.  State 与生命周期`;
+        setResult(sampleDesign);
         setLoading(false);
         return;
       }
@@ -96,7 +115,7 @@ const InstructionalDesign: React.FC<InstructionalDesignProps> = ({ onBack }) => 
   return (
     <div className="instructional-design-container">
       <div className="header">
-        <Button onClick={onBack}>返回</Button>
+        <Button onClick={onBack} className="back-button">返回</Button>
         <h1>教学设计生成器</h1>
       </div>
 
@@ -122,6 +141,7 @@ const InstructionalDesign: React.FC<InstructionalDesignProps> = ({ onBack }) => 
             type="primary" 
             onClick={generateDesign} 
             loading={loading}
+            className="generate-button"
           >
             生成教学设计
           </Button>
@@ -140,7 +160,7 @@ const InstructionalDesign: React.FC<InstructionalDesignProps> = ({ onBack }) => 
                 <div className="success-result">
                   <div className="success-icon">✓</div>
                   <p>教学设计已生成成功！</p>
-                  <Button type="primary" size="large" onClick={downloadMdFile} icon={<DownloadOutlined />}>
+                  <Button type="primary" size="large" onClick={downloadMdFile} icon={<DownloadOutlined />} className="download-button">
                     下载MD文件
                   </Button>
                 </div>

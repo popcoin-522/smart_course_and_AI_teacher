@@ -1,0 +1,208 @@
+@import '../../styles/common.scss';
+
+.smart-learning-push-container {
+  @include page-container;
+
+  .header {
+    @include page-header;
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: $spacing-xl;
+    max-width: 1400px;
+    margin: 0 auto;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+    }
+
+    .input-section, .result-section {
+      @include card-style;
+      
+      h2 {
+        margin-bottom: $spacing-lg;
+        color: $text-color-primary;
+        font-weight: 600;
+        border-bottom: 2px solid $border-color;
+        padding-bottom: $spacing-md;
+      }
+    }
+
+    .input-section {
+      display: flex;
+      flex-direction: column;
+      
+      textarea.ant-input {
+        @include input-style;
+        min-height: 200px;
+        margin-bottom: $spacing-lg;
+      }
+
+      .settings-section {
+        margin-bottom: $spacing-lg;
+        background: lighten($bg-color-page, 2%);
+        padding: $spacing-md;
+        border-radius: $border-radius-md;
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-md;
+
+        .days-setting, .file-name-input {
+          display: flex;
+          align-items: center;
+          gap: $spacing-sm;
+          width: 100%;
+          
+          span {
+            white-space: nowrap;
+          }
+
+          .ant-input-number, .ant-input-wrapper {
+            width: 100%;
+          }
+        }
+      }
+
+      .button-group {
+        display: flex;
+        gap: $spacing-md;
+        margin-top: auto;
+        padding-top: $spacing-lg;
+
+        .generate-button {
+          @include primary-button;
+        }
+        .download-button {
+          // A secondary button style could be defined in common.scss
+          background: $bg-color-card;
+          border: 1px solid $primary-color;
+          color: $primary-color;
+        }
+      }
+    }
+
+    .result-section {
+      .loading-container, .empty-state {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 500px;
+        text-align: center;
+      }
+
+      .empty-state {
+        background-color: lighten($bg-color-page, 2%);
+        border: 2px dashed $border-color;
+        border-radius: $border-radius-md;
+        color: $text-color-light;
+        font-size: 16px;
+      }
+
+      .result-content {
+        max-height: 70vh;
+        overflow-y: auto;
+        padding-right: $spacing-sm;
+      }
+
+      .schedule-content {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-lg;
+      }
+
+      .day-schedule {
+        background-color: lighten($bg-color-page, 2%);
+        border-radius: $border-radius-md;
+        padding: $spacing-lg;
+        border: 1px solid darken($border-color, 5%);
+      }
+
+      .day-title {
+        display: flex;
+        align-items: center;
+        color: $primary-color;
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: $spacing-md;
+        padding-bottom: $spacing-md;
+        border-bottom: 1px solid $border-color;
+        .anticon {
+          margin-right: $spacing-sm;
+        }
+      }
+
+      .activity-item {
+        padding: $spacing-md;
+        background-color: $bg-color-card;
+        border-radius: $border-radius-sm;
+        margin-bottom: $spacing-md;
+        border-left: 4px solid $primary-color;
+
+        h4 {
+          margin: 0 0 $spacing-sm 0;
+          color: $text-color-primary;
+        }
+
+        p {
+          margin: 0 0 $spacing-md 0;
+          color: $text-color-secondary;
+        }
+
+        .activity-meta {
+          display: flex;
+          align-items: center;
+          gap: $spacing-md;
+          margin-bottom: $spacing-md;
+        }
+
+        .duration {
+          font-size: 12px;
+          color: $text-color-light;
+        }
+
+        .resources {
+          margin-top: $spacing-md;
+          padding-top: $spacing-md;
+          border-top: 1px dashed $border-color;
+          
+          strong {
+            font-size: 13px;
+            color: $text-color-secondary;
+          }
+
+          ul {
+            margin: $spacing-sm 0 0 0;
+            padding-left: $spacing-md;
+            list-style-type: disc;
+          }
+
+          li {
+            font-size: 13px;
+            color: $text-color-secondary;
+            line-height: 1.6;
+          }
+        }
+      }
+    }
+  }
+}
+
+.result-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.result-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.result-content::-webkit-scrollbar-thumb {
+  background: $border-color;
+  border-radius: 3px;
+  
+  &:hover {
+    background: darken($border-color, 10%);
+  }
+}

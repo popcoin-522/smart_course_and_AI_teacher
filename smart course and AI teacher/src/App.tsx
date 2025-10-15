@@ -18,6 +18,9 @@ import {
 } from 'antd'
 import InstructionalDesign from './pages/InstructionalDesign'
 import KnowledgeBase from './pages/KnowledgeBase'
+import LearningPath from './pages/LearningPath/LearningPath'
+import PPTGenerator from './pages/PPTGenerator/PPTGenerator'
+import SmartLearningPush from './pages/SmartLearningPush/SmartLearningPush'
 import { useForm } from 'antd/es/form/Form.js'
 // import { PlayerEvents, SDKEvents } from './lib/enums/events'
 // import AvatarPlatform from './lib/core'
@@ -379,6 +382,18 @@ function App() {
     return <KnowledgeBase onBack={() => setCurrentPage('main')} />;
   }
 
+  if (currentPage === 'learningPath') {
+    return <LearningPath onBack={() => setCurrentPage('main')} />;
+  }
+
+  if (currentPage === 'pptGenerator') {
+    return <PPTGenerator onBack={() => setCurrentPage('main')} />;
+  }
+
+  if (currentPage === 'smartLearningPush') {
+    return <SmartLearningPush onBack={() => setCurrentPage('main')} />;
+  }
+
   return (
     <Spin spinning={loading} tip="Loading...">
       <div className={'wrapper'}>
@@ -386,12 +401,21 @@ function App() {
         <div className="wp wrapper2"></div>
         <p className="subtitle">{subtitle}</p>
       </div>
-      <div style={{ position: 'fixed', top: '10px', right: '10px', zIndex: 2, display: 'flex', gap: '10px' }}>
+      <div style={{ position: 'fixed', top: '10px', right: '10px', zIndex: 2, display: 'flex', flexDirection: 'column', gap: '10px' }}>
         <Button onClick={() => setCurrentPage('instructionalDesign')}>
           教学设计生成器
         </Button>
         <Button onClick={() => setCurrentPage('knowledgeBase')}>
           知识库题目
+        </Button>
+        <Button onClick={() => setCurrentPage('learningPath')}>
+          学习路径
+        </Button>
+        <Button onClick={() => setCurrentPage('pptGenerator')}>
+          PPT 生成器
+        </Button>
+        <Button onClick={() => setCurrentPage('smartLearningPush')}>
+          智能学习推送
         </Button>
         <Button onClick={() => setDrawerOpen(true)}>
           打开调试面板
